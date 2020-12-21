@@ -19,11 +19,11 @@ jobs:
       - name: Prepare Docker Image Tag
         id: prep
         run: |
-          if [[ ${{ github.ref }} == refs/heads/dev ]]; then
+          if [[ ${{ github.ref }} == refs/heads/develop_st/2.13.x ]]; then
             TAG=$(git rev-parse --short=8 ${{ github.sha }})
-          elif [[ ${{ github.ref }} == refs/heads/release/* ]]; then
+          elif [[ ${{ github.ref }} == refs/heads/release_st/* ]]; then
             TAG=$(echo ${{ github.ref }} | cut -d '/' -f 4)
-          elif [[ ${{ github.ref }} == refs/heads/main ]]; then
+          elif [[ ${{ github.ref }} == refs/heads/master_st ]]; then
             TAG=${{ 'latest' }}
           fi
           echo ::set-output name=image_tag::${TAG}
